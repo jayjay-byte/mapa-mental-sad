@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapa Mental – Sistemas de Informação</title>
+<style>
+:root{--bg:#eef2fb;--bg2:#e3e9fa;--card:#fff;--tx:#1b2240;--mu:#5b6482;--bd:#dfe3f0;--core:#0f3d73;--core2:#1d6fc4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12152a;--bg2:#181c38;--card:#1c2040;--tx:#eef0fa;--mu:#a3abc8;--bd:#2f3560;--core:#1550a0;--core2:#2b86e0}}
+:root[data-theme="dark"]{--bg:#12152a;--bg2:#181c38;--card:#1c2040;--tx:#eef0fa;--mu:#a3abc8;--bd:#2f3560;--core:#1550a0;--core2:#2b86e0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(circle at 50% 0,var(--bg2),var(--bg) 70%);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5;min-height:100vh}
+header{text-align:center;padding:22px 16px 0}
+h1{font-size:1.45rem;margin:0}
+header p{color:var(--mu);margin:4px 0 0;font-size:.9rem}
+main{max-width:1000px;margin:0 auto;padding:4px 16px 20px}
+svg{width:100%;height:auto;display:block}
+.ln{fill:none;stroke-width:5;stroke-linecap:round;opacity:.7}
+.node{cursor:pointer}
+.node rect.b{stroke-width:3;transition:.2s}
+.node:hover rect.b,.node.on rect.b{stroke-width:5}
+.node:hover,.node.on{filter:drop-shadow(0 6px 10px rgba(0,0,0,.28))}
+.node text{font-size:15px;font-weight:700;fill:#1b2240;pointer-events:none}
+.node .s{font-size:11px;font-weight:500;fill:#444b6a}
+.node .i{font-size:22px}
+.core{cursor:pointer;transition:.2s}
+.core:hover,.core.on{filter:drop-shadow(0 8px 14px rgba(15,61,115,.55))}
+.core text{fill:#fff;font-weight:800;pointer-events:none}
+.pulse{animation:p 2.2s ease-in-out infinite;transform-origin:400px 225px}
+@keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@media (prefers-reduced-motion:reduce){.pulse{animation:none}}
+.bar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:4px 0 12px}
+button.t{border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:6px 14px;border-radius:99px;cursor:pointer;font-size:.85rem}
+#panel{background:var(--card);border:2px solid var(--bd);border-radius:18px;padding:18px;min-height:110px;box-shadow:0 8px 24px rgba(20,30,80,.08)}
+#panel h2{margin:0 0 4px;font-size:1.15rem}
+.sub{color:var(--mu);font-size:.92rem;margin:0 0 12px}
+.def{font-size:1.05rem;border-left:5px solid var(--core2);padding:6px 14px;margin:8px 0;background:var(--bg);border-radius:0 12px 12px 0}
+details{border:1px solid var(--bd);border-left-width:5px;border-radius:12px;padding:8px 12px;margin:8px 0;background:var(--bg)}
+summary{cursor:pointer;font-weight:650}
+details ul{margin:8px 0 2px;padding-left:20px;color:var(--mu);font-size:.92rem}
+.hint{color:var(--mu);text-align:center;margin:20px 0}
+footer{text-align:center;color:var(--mu);font-size:.85rem;padding:8px 16px 24px}
+footer b{color:var(--tx)}
+</style>
+</head>
+<body>
+<header>
+<h1>Mapa Mental · Sistemas de Informação</h1>
+<p>Clique na nuvem central e nos ramos para explorar</p>
+</header>
+<main>
+<svg id="map" viewBox="0 0 800 450" role="img" aria-label="Mapa mental de Sistemas de Informação"></svg>
+<div class="bar">
+<button class="t" id="all">Expandir tudo</button>
+<button class="t" id="none">Recolher tudo</button>
+</div>
+<div id="panel"></div>
+</main>
+<footer>Autora: <b>Jaiana Santana</b></footer>
+<script>
+const CORE="O núcleo dos Sistemas de Informação consiste em mecanismos cuja função é coletar, guardar e processar dados para distribuir informações que suportem as decisões gerenciais e operacionais.";
+const D=[
+{id:2,ic:"⚙️",t:"1. Nível Operacional",s:"Rotinas e transações",c:"#f0a400",f:"#fff3cf",x:135,y:70,cx:[300,90],
+ intro:"Foco em rotinas e transações. Usuários: profissionais do nível operacional.",
+ it:[["Sistemas de Informação Transacionais (SIT)",["Coletam, processam e armazenam dados de alto volume de transações diárias e repetitivas (ex.: folha de pagamento, controle de estoque)","Servem como base de dados para os níveis gerenciais superiores"]],
+ ["Sistemas de Automação de Escritório (SAE)",["Focados no trabalho de escritório","Facilitam a recuperação de documentos, memorandos e planilhas eletrônicas"]]]},
+{id:3,ic:"📈",t:"2. Nível Tático e Gerencial",s:"Controle e apoio à decisão",c:"#e63950",f:"#ffdfe3",x:665,y:70,cx:[500,90],
+ intro:"Foco em controle e apoio à decisão. Usuários: gerentes (nível tático), decisores e analistas.",
+ it:[["Sistemas de Informações Gerenciais (SIG)",["Agregam e consolidam dados do SIT para gerar relatórios padronizados e painéis de controle"]],
+ ["Sistemas de Apoio à Decisão (SAD)",["Utilizam modelos matemáticos e simulações de cenários (“what-if”) para apoiar decisões semiestruturadas e não estruturadas"]],
+ ["Sistemas Especialistas (SE)",["Usam bancos de conhecimento e regras de IA para diagnosticar problemas e apoiar especialistas em decisões específicas"]],
+ ["Business Intelligence (BI) e Mineração de Dados (Data Mining / KDD)",["Exploração multidimensional e descoberta de padrões e tendências em grandes volumes de dados (Data Warehouses) para análises preditivas"]]]},
+{id:5,ic:"🔗",t:"4. Sistemas Integrados",s:"e de Fronteiras Interorganizacionais",c:"#2a9de0",f:"#d6edfb",x:135,y:380,cx:[300,360],
+ intro:"Esses sistemas perpassam vários níveis hierárquicos e conectam a empresa à sua rede de parceiros comerciais. Usuários: todos os níveis da empresa, estendendo-se a clientes, fornecedores e distribuidores.",
+ it:[["Enterprise Resource Planning (ERP)",["Espinha dorsal da empresa, unifica dados de finanças, RH, produção e logística em um banco de dados centralizado","Elimina a redundância departamental"]],
+ ["Customer Relationship Management (CRM)",["Foco no cliente, integrando vendas, marketing e suporte","Cria uma visão unificada e individualizada de cada consumidor"]],
+ ["Supply Chain Management (SCM)",["Voltado para fora da empresa, orquestra o fluxo de materiais e informações entre fornecedores, indústrias, varejistas e transportadoras","Mitiga o efeito chicote"]],
+ ["e-Commerce (Comércio Eletrônico)",["Viabiliza vendas, pagamentos e atendimento integrados virtualmente (B2C ou B2B)","Opera conectado aos sistemas de bastidores (ERP e SCM)"]]]},
+{id:4,ic:"🎯",t:"3. Nível Estratégico",s:"Longo prazo e visão global",c:"#7a55e0",f:"#e5dcff",x:665,y:380,cx:[500,360],
+ intro:"Foco em longo prazo e visão global. Usuários: alta cúpula (CEOs, presidentes, diretores e conselhos) e executivos seniores.",
+ it:[["Sistemas de Informação para Executivos (EIS / SIE)",["Fornecem uma visão panorâmica do status de indicadores e fatores críticos de sucesso","Permitem o “drill-down” e cruzam fontes internas e externas"]],
+ ["Sistemas de Inteligência Competitiva (IC)",["Monitoram o ambiente externo (dados públicos, concorrentes, patentes) para prever movimentos de mercado e orientar estratégias de longo prazo"]]]}
+];
+const svg=document.getElementById('map'),panel=document.getElementById('panel');
+let sel=null,openAll=false,h='<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--core2)"/><stop offset="1" stop-color="var(--core)"/></linearGradient></defs>';
+D.forEach(d=>{const sx=d.x<400?335:465,sy=d.y<200?190:260;
+ h+=`<path class="ln" stroke="${d.c}" d="M${sx} ${sy} C${d.cx[0]} ${d.cx[1]} ${d.x<400?d.x+105:d.x-105} ${d.cx[1]>200?d.y+60:d.y-60} ${d.x<400?d.x+30:d.x-30} ${d.y<200?d.y+30:d.y-30}"/>`});
+D.forEach(d=>{h+=`<g class="node" data-id="${d.id}" tabindex="0" role="button"><rect class="b" x="${d.x-112}" y="${d.y-32}" width="224" height="64" rx="18" fill="${d.f}" stroke="${d.c}"/><text class="i" x="${d.x-92}" y="${d.y+8}" text-anchor="middle">${d.ic}</text><text x="${d.x+10}" y="${d.y-5}" text-anchor="middle">${d.t}</text><text class="s" x="${d.x+10}" y="${d.y+14}" text-anchor="middle">${d.s}</text></g>`});
+h+=`<g class="core" data-id="0" tabindex="0" role="button" aria-label="Sistemas de Informação"><g class="pulse"><g fill="url(#g)"><ellipse cx="400" cy="232" rx="118" ry="52"/><circle cx="318" cy="228" r="42"/><circle cx="482" cy="228" r="42"/><circle cx="350" cy="190" r="46"/><circle cx="440" cy="186" r="52"/><circle cx="395" cy="170" r="40"/></g></g>
+<g fill="#fff" fill-opacity=".95"><ellipse cx="385" cy="150" rx="24" ry="8"/><path d="M361 150v22c0 5 11 9 24 9s24-4 24-9v-22c0 5-11 9-24 9s-24-4-24-9z"/><rect x="418" y="146" width="34" height="24" rx="3"/><rect x="429" y="173" width="12" height="4"/><rect x="423" y="177" width="24" height="3" rx="1"/></g>
+<text x="400" y="215" text-anchor="middle" font-size="22">Sistemas de</text><text x="400" y="242" text-anchor="middle" font-size="22">Informação (SI)</text><text x="400" y="262" text-anchor="middle" font-size="11" style="font-weight:500">toque para ver o núcleo</text></g>`;
+svg.innerHTML=h;
+function render(){
+ document.querySelectorAll('.node,.core').forEach(n=>n.classList.toggle('on',sel!=null&&n.dataset.id==sel));
+ if(sel==null){panel.style.borderColor='';panel.innerHTML='<p class="hint">👆 Toque na nuvem central ou em um dos 4 ramos para ver os detalhes.</p>';return}
+ if(sel===0){panel.style.borderColor='var(--core2)';panel.innerHTML=`<h2>🧠 Sistemas de Informação (SI)</h2><p class="sub">O núcleo do mapa</p><div class="def">${CORE}</div>`;return}
+ const d=D.find(x=>x.id==sel);panel.style.borderColor=d.c;
+ panel.innerHTML=`<h2>${d.ic} ${d.t}</h2><p class="sub">${d.intro}</p>`+d.it.map(i=>`<details style="border-left-color:${d.c}" ${openAll?'open':''}><summary>${i[0]}</summary><ul>${i[1].map(b=>`<li>${b}</li>`).join('')}</ul></details>`).join('');
+}
+function pick(id){sel=(sel===id?null:id);openAll=false;render();if(sel!=null)panel.scrollIntoView({behavior:'smooth',block:'nearest'})}
+document.querySelectorAll('.node,.core').forEach(n=>{n.onclick=()=>pick(+n.dataset.id);n.onkeydown=e=>{if(e.key=='Enter'||e.key==' '){e.preventDefault();pick(+n.dataset.id)}}});
+document.getElementById('all').onclick=()=>{if(sel==null||sel===0)sel=2;openAll=true;render()};
+document.getElementById('none').onclick=()=>{openAll=false;render()};
+render();
+</script>
+</body>
+</html>
